@@ -21,5 +21,4 @@ public class LgTV implements TV {
 		System.out.println("LGTV - º¼·ý Down");
 		
 	}
-
 }
