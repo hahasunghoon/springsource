@@ -18,19 +18,19 @@ public class BookMain {
 		BookService service = (BookService) ctx.getBean("bookService");
 		
 		//도서 추가
-//		BookDTO insertDto = new BookDTO(1001, "이것이 자바다", "신용균", 25000, "null");
-//		if(service.insertBook(insertDto)) {
-//			System.out.println("입력성공");
-//		}	
+		BookDTO insertDto = new BookDTO(1011, "이것이 자바다", "신용균", 25000, "null");
+		if(service.insertBook(insertDto)) {
+			System.out.println("입력성공");
+		}	
 		
 		
 		//도서 수정
 //		BookDTO updateDto = new BookDTO();
 //		updateDto.setCode(1001);
 //		updateDto.setPrice(26000);
-		if(service.updateBook(20000,1005)) {
-			System.out.println("수정성공");
-		}
+//		if(service.updateBook(20000,1005)) {
+//			System.out.println("수정성공");
+//		}
 //		
 //		//특정 도서 조회
 //		BookDTO row = service.getBook(1001);
