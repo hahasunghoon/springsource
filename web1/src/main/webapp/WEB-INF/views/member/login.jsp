@@ -11,13 +11,15 @@
      <form action="" method="post">
         <div>
                 <label for="id">id</label>
-                <input type="text"  name="userid"  id="id"/>
+                <input type="text"  name="id"  id="id"/>
         </div>
         <div>
                 <label for="password">password</label>
                 <input type="password""  name="password""  id="password""/>
         </div>
+        <div>
                <button type="submit">로그인</button>
+         </div>
      </form>
 </body>
 </html>

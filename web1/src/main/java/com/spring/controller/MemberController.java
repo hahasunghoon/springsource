@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.domain.LoginDTO;
+import com.spring.domain.RegisterDTO;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -24,11 +27,7 @@ public class MemberController {
 	// 2) 변수사용 :1) 변수명은 폼 태그 name과 일치 2) 폼 태그 name 과 일치하지 않을 떄 @RequestParm 사용
 	// 3) 바인딩 객체 사용
 	
-	
-	
-	
-	
-	
+
 //	@RequestMapping(value="/login", method = RequestMethod.GET)
 	@GetMapping("/login")
 	public void LoginGet(HttpServletRequest req) {
@@ -47,12 +46,23 @@ public class MemberController {
 //		System.out.println("password "+req.getParameter("password"));
 //	}
 	
+//	@PostMapping("/login")
+//	public void loginPost(@RequestParam("userid") String id, String password) {
+//		log.info("login post..."); 
+//	    // 사용자 입력값 id, password
+//		System.out.println("id "+id);
+//		System.out.println("password "+password);
+//	}
+	
 	@PostMapping("/login")
-	public void loginPost(@RequestParam("userid") String id, String password) {
+	public String loginPost(LoginDTO dto) {
 		log.info("login post..."); 
 	    // 사용자 입력값 id, password
-		System.out.println("id "+id);
-		System.out.println("password "+password);
+		System.out.println("id "+dto.getId());
+		System.out.println("password "+dto.getPassword());
+		
+		//main.jsp로 보여주기
+		return "/member/main";
 	}
 	
 	//@RequestMapping("/member/register") // http://localhost:8080/member/register
@@ -62,4 +72,18 @@ public class MemberController {
 	//	return "/member/register"; // //리턴이 있다면 / WEB-INF/views/register.jsp
 	}
 
+	 // /member/register + POST처리
+	// DTO작성
+	//사용자 입력값
+	// login.jsp 보여주기
+	@PostMapping("/register")
+	public String resisterPost(RegisterDTO dto) {
+		log.info("회원가입 요청");
+		log.info(dto.toString());
+		
+		//redirect : 붙게되면 DispatcherServlet 이 동작  =>다시한번 경로이동
+		// ==response.sendRedirect()
+		//http://localhost:8080/member/login + get요청
+		return "redirect:/member/login";
+	}
 }
