@@ -19,7 +19,7 @@ document.querySelector(".btn-danger").addEventListener('click',()=>{
 	const userid = document.querySelector("#userid").value;
 	
 	
-	fetch("dupId.do",{
+	fetch("/member/dupId",{
 		method:"post",		
 		body: new URLSearchParams({userid:userid})
 		
