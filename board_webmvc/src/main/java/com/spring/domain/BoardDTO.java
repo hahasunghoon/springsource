@@ -8,14 +8,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@NoArgsConstructor
+@ToString
 @AllArgsConstructor
-@Getter @Setter @ToString
+@NoArgsConstructor
+@Getter @Setter
 public class BoardDTO {
-	        private  int bno;
-			private String title;
-			private String content;
-			private String writer;
-			private Date regDate;
-			private Date updateDate;
+	private int bno;
+	private String title;
+	private String content;
+	private String writer;
+	private Date regDate;
+	private Date updateDate;
 }
