@@ -103,6 +103,5 @@ searchForm.addEventListener("submit", (e) => {
     keyword.focus();
     return;
   }
-
   searchForm.submit();
 });

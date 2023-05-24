@@ -35,4 +35,4 @@
 	</div>
 </div>
 <script src="/resources/js/register.js"></script>
-<%@ include file="../include/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>-

@@ -21,7 +21,12 @@ public class Criteria {
 		this.page = page;
 		this.amount = amount;
 	}	
+	
+	public String[] getTypeArr() {
+		return type == null ? new String[] {} : type.split("");
+	}
 }
+
 
 
 
