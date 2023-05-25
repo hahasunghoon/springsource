@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 <!-- Page Heading -->
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
-<!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800">Board Read</h1>
 </div>
@@ -47,8 +44,7 @@
 <div class="card mt-4">
 	<div class="card-header">
 		<i class="fa fa-comments fa-fw"></i>
-		Reply
-		<button id="addReplyBtn" class="btn btn-primary btn-sm mx-3">New Reply</button>
+		Reply		
 	</div>
 	<div class="card-body">
 		<ul class="chat list-group list-group-flush">
@@ -58,9 +54,42 @@
 					<small class='text-muted text-right'>2023-05-24 00:00</small>				
 				</div>
 				<p>Good JOB</p>
+				<div class="btn-group btn-group-sm">
+					<button class="btn btn-warning" type="button">수정</button>
+					<button class="btn btn-danger" type="button">삭제</button>
+				</div>
 			</li>
 		</ul>
 	</div>
+	<div class="card-footer">
+		<!-- 댓글 페이지 나누기 -->
+	</div>
+</div>
+<!-- 댓글 수정 폼 -->
+<div class="modal" tabindex="-1" id="replyModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">댓글 수정</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="rno" id="rno" />
+        <div class="form-group">
+        	<textarea name="reply" id="reply" rows="4" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+        	<input type="text" name="replyer" id="replyer" class="form-control" readonly/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">수정</button>
+      </div>
+    </div>
+  </div>
 </div>
 <form action="" id="operForm">
 	<input type="hidden" name="bno" value="${dto.bno}" />
