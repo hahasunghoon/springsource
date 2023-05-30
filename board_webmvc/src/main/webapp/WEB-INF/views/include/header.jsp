@@ -24,6 +24,16 @@
     <!-- Custom styles for this template-->
     <link href="/resources/css/sb-admin-2.min.css" rel="stylesheet">
 
+	<!-- Bootstrap core JavaScript-->
+    <script src="/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- lightbox  -->
+     <script src="/resources/css/lightbox/lightbox.min.css" rel="stylesheet"></script>
+    <script src="/resources/js/lightbox/lightbox.min.js"></script>
+    
+        <!-- upload css  -->
+      <link href="/resources/css/upload.css" rel="stylesheet">
 </head>
 
 <body id="page-top">

@@ -1,7 +1,7 @@
 /**
  *
  */
-document.querySelector("#uploadBtn").addEventListener("click", () => {
+document.querySelector("#uploadFile").addEventListener("change", () => {
   //FormData 객체 생성
   const formData = new FormData();
 
@@ -50,7 +50,18 @@ function showUploadedFile(uploadResultArr) {
         item.uploadPath + "\\" + item.uuid + "_" + item.fileName
       );
 
-      str += "<li>";
+      str +=
+        "<li data-path='" +
+        item.uploadPath +
+        "' data-uuid='" +
+        item.uuid +
+        "' ";
+      str +=
+        " data-filename='" +
+        item.fileName +
+        "' data-type='" +
+        item.fileType +
+        "' >";
       str +=
         "<a href='/display?fileName=" +
         oriFileCallPath +
@@ -59,29 +70,44 @@ function showUploadedFile(uploadResultArr) {
         "<div class='text-center'><img src='/display?fileName=" +
         fileCallPath +
         "'></a></div>";
-      str += "<small>" + item.fileName + "</small>";
+      str += "<small>" + item.fileName + "</small> ";
       str +=
-        "<span data-file='" + fileCallPath + "' data-type='image'> X </span>";
+        "<button type='button' class='btn btn-sm btn-circle btn-warning' data-file='" +
+        fileCallPath +
+        "' data-type='image'> X </button>";
       str += "</li>";
     } else {
-      // txt 파일
-      // str += "<li>" + item.fileName + "</li>";
-
       //txt 파일 경로 생성
       let fileCallPath = encodeURIComponent(
         item.uploadPath + "\\" + item.uuid + "_" + item.fileName
       );
 
-      str += "<li>";
+      str +=
+        "<li data-path='" +
+        item.uploadPath +
+        "' data-uuid='" +
+        item.uuid +
+        "' ";
+      str +=
+        " data-filename='" +
+        item.fileName +
+        "' data-type='" +
+        item.fileType +
+        "' >";
       str += "<a href='/download?fileName=" + fileCallPath + "'>";
       str +=
         "<div class='text-center'><img src='/resources/img/txt-file.png'></div>";
-      str += "<small>" + item.fileName + "</small></a>";
+      str += "<small>" + item.fileName + "</small></a> ";
       str +=
-        "<span data-file='" + fileCallPath + "' data-type='file'> X </span>";
+        "<button type='button' class='btn btn-sm btn-circle btn-warning' data-file='" +
+        fileCallPath +
+        "' data-type='file'> X </button>";
       str += "</li>";
     }
   });
+
+  console.log("파일첨부 ", str);
+
   document
     .querySelector(".uploadResult ul")
     .insertAdjacentHTML("beforeend", str);
