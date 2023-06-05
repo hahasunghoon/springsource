@@ -8,6 +8,11 @@
 	
 	<!-- 인증(로그인)되지 않았다면 -->
 	<security:authorize access="!isAuthenticated()">
+	<div class="row">
+			<div class="col">
+				<a href="/security/register">회원가입</a>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col">
 				<a href="/security/login">로그인</a>
