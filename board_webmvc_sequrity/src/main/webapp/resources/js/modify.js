@@ -63,10 +63,13 @@ const form = document.querySelector("#operForm");
 
 // 삭제 버튼 클릭 시 operForm 보내기
 // /board/remove 전송
-document.querySelector(".btn-danger").addEventListener("click", () => {
-  form.action = "/board/remove";
-  form.submit();
-});
+const btnDan = document.querySelector(".btn-danger");
+if (btnDan) {
+  btnDan.addEventListener("click", () => {
+    form.action = "/board/remove";
+    form.submit();
+  });
+}
 
 // 목록 버튼 클릭 시 operForm 보내기
 // /board/list 전송

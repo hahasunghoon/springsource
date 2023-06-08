@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,11 +53,13 @@ public class BoardController {
 	}
 	
 	// register.jsp 보여주기
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/register")
 	public void registerGet() {
 		log.info("글쓰기 폼 요청");
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/register")
 	public String registerPost(BoardDTO dto,RedirectAttributes rttr,Criteria cri) {
 		log.info("글쓰기 등록 요청 "+dto);
@@ -91,6 +94,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/modify")
+	@PreAuthorize("principal.username == #dto.writer ") //로그인 사용자 == 작성자
 	public String modifyPost(BoardDTO dto,RedirectAttributes rttr,Criteria cri) {
 		log.info("내용 수정 "+cri);
 		//성공 시 리스트
@@ -110,7 +114,8 @@ public class BoardController {
 	// /board/remove?bno=21
 	
 	@GetMapping("/remove")
-	public String removeGet(int bno,RedirectAttributes rttr,Criteria cri) {
+	@PreAuthorize("principal.username == #writer ")//로그인 사용자 == 작성자
+	public String removeGet(int bno, String writer, RedirectAttributes rttr,Criteria cri) {
 		
 		//폴더에서 첨부 파일 제거
 		List<AttachFileDTO> attachList = service.getAttachList(bno);
@@ -149,14 +154,14 @@ public class BoardController {
 		
 		for(AttachFileDTO dto : attachList) {
 			// 파일 경로 
-			Path path = Paths.get("c:\\upload\\"+dto.getUploadPath()+"\\"+dto.getUuid()+"_"+dto.getFileName());
+			Path path = Paths.get("e:\\upload\\"+dto.getUploadPath()+"\\"+dto.getUuid()+"_"+dto.getFileName());
 			
 			try {
 				Files.deleteIfExists(path);
 				
 				// 이미지 파일인 경우 썸네일 제거
 				if(Files.probeContentType(path).startsWith("image")) {
-					Path thumb = Paths.get("c:\\upload\\"+dto.getUploadPath()+"\\s_"+dto.getUuid()+"_"+dto.getFileName());
+					Path thumb = Paths.get("e:\\upload\\"+dto.getUploadPath()+"\\s_"+dto.getUuid()+"_"+dto.getFileName());
 					Files.deleteIfExists(thumb);
 				}
 				
